@@ -5,6 +5,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = "nodebackendcicd"
         DOCKER_CONTAINER_NAME = "nodebackendcicd_container"
+        COMMIT_HASH_VERSIONING = "git rev-parse --short HEAD"
     }
     
     stages {
@@ -16,7 +17,7 @@ pipeline {
         
         stage('Docker Build') {
             steps {
-                sh "docker build -t ${DOCKER_IMAGE_NAME}:latest ."
+                sh "docker build -t ${DOCKER_IMAGE_NAME}:${COMMIT_HASH_VERSIONING} ."
             }
         }
 
@@ -30,7 +31,7 @@ pipeline {
         
         stage('Docker Run'){
             steps {
-                sh "docker run -d --name ${DOCKER_CONTAINER_NAME} -p 5004:5004 ${DOCKER_IMAGE_NAME}:latest"
+                sh "docker run -d --name ${DOCKER_CONTAINER_NAME} -p 5004:5004 ${DOCKER_IMAGE_NAME}:${COMMIT_HASH_VERSIONING}"
             }
         }
     }
