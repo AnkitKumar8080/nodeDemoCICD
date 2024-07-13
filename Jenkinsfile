@@ -5,7 +5,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = "nodebackendcicd"
         DOCKER_CONTAINER_NAME = "nodebackendcicd_container"
-        COMMIT_HASH_VERSIONING = "git rev-parse --short HEAD"
+        COMMIT_HASH_VERSIONING = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
     }
     
     stages {
