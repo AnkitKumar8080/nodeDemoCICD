@@ -3,8 +3,8 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_IMAGE_NAME = "nodeBackendCICD"
-        DOCKER_CONTAINER_NAME = "nodeBackendCICDContainer"
+        DOCKER_IMAGE_NAME = "nodebackendcicd"
+        DOCKER_CONTAINER_NAME = "nodebackendcicd_container"
     }
     
     stages {
